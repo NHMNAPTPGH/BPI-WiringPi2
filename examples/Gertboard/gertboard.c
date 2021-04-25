@@ -9,7 +9,7 @@
  *	plot the input value on the terminal as a sort of vertical scrolling
  *	oscilloscipe.
  *
- * Copyright (c) 2012-2013 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2012-2013 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

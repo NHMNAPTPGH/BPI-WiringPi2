@@ -2,7 +2,7 @@
  * test.c:
  *	Little test program forthe Pimoroni Scroll Phat.
  *
- * Copyright (c) 2015-2016 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2015-2016 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

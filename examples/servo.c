@@ -3,7 +3,7 @@
  *	Test of the softServo code.
  *	Do not use this code - use the servoBlaster kernel module instead
  *
- * Copyright (c) 2012-2013 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2012-2013 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

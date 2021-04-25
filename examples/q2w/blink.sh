@@ -4,7 +4,7 @@
 #	Standard "blink" program in wiringPi. Blinks an LED connected
 #	to the LED on the Quick2Wire board
 #
-# Copyright (c) 2012-2013 Gordon Henderson. <projects@drogon.net>
+# Copyright (c) 2012-2013 Gordon Henderson.
 #######################################################################
 # This file is part of wiringPi:
 #	https://projects.drogon.net/raspberry-pi/wiringpi/

@@ -3,7 +3,7 @@
  *	Test of the softTone module in wiringPi
  *	Plays a scale out on pin 3 - connect pizeo disc to pin 3 & 0v
  *
- * Copyright (c) 2012-2013 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2012-2013 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

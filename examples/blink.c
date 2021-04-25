@@ -3,7 +3,7 @@
  *	Standard "blink" program in wiringPi. Blinks an LED connected
  *	to the first GPIO pin.
  *
- * Copyright (c) 2012-2013 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2012-2013 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

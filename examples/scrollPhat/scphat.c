@@ -3,7 +3,7 @@
  *	Little program to allow use of the Pimoroni Sctoll Phat
  *	from the command-line.
  *
- * Copyright (c) 2015-2016 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2015-2016 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

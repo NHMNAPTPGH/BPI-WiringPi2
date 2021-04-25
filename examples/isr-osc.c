@@ -23,7 +23,7 @@
  *	then do the up/down toggling for itself and run at full speed, and
  *	it will report the number of interrupts recieved every second.
  *
- *	Copyright (c) 2013 Gordon Henderson. projects@drogon.net
+ *	Copyright (c) 2013 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

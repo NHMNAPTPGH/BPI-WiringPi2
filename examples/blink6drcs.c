@@ -4,7 +4,7 @@
  *	Aimed at the Gertduino, but it's fairly generic.
  *	This version uses DRC to talk to the ATmega on the Gertduino
  *
- * Copyright (c) 2012-2014 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2012-2014 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/

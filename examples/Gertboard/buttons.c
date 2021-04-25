@@ -3,7 +3,7 @@
  *	Read the Gertboard buttons. Each one will act as an on/off
  *	tiggle switch for 3 different LEDs
  *
- * Copyright (c) 2012-2013 Gordon Henderson. <projects@drogon.net>
+ * Copyright (c) 2012-2013 Gordon Henderson.
  ***********************************************************************
  * This file is part of wiringPi:
  *	https://projects.drogon.net/raspberry-pi/wiringpi/
