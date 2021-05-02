@@ -155,7 +155,9 @@ void serialClose (const int fd)
 
 void serialPutchar (const int fd, const unsigned char c)
 {
+#pragma GCC diagnostic ignored "-Wunused-result"
   write (fd, &c, 1) ;
+#pragma GCC diagnostic pop
 }
 
 
@@ -167,7 +169,9 @@ void serialPutchar (const int fd, const unsigned char c)
 
 void serialPuts (const int fd, const char *s)
 {
-  write (fd, s, strlen (s)) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
+	  write (fd, s, strlen (s)) ;
+#pragma GCC diagnostic pop
 }
 
 /*

@@ -243,7 +243,7 @@ const char *piModelNames [16] =
   "Raspbery Pi[RPI]",	// 18
   "Raspbery Pi[RPI2]",	// 19
   "Raspbery Pi[RPI3]",	// 20
-  "Banana Pi M1[A20]",	// 21	
+  "Banana Pi M1[A20]",	// 21
   "Banana Pi M1+[A20]",	// 22
   "Banana Pi R1[A20]",	// 23
   "Banana Pi M2[A31s]",	// 24
@@ -820,7 +820,7 @@ int piGpioLayout (void)
 
   for (c = &line [strlen (line) - 1] ; (*c == '\n') || (*c == '\r') ; --c)
     *c = 0 ;
-  
+
   if (wiringPiDebug)
     printf ("piGpioLayout: Revision string: %s\n", line) ;
 
@@ -889,7 +889,7 @@ int piBoardRev (void)
  *	So the distinction between boards that I can see is:
  *
  *		0000 - Error
- *		0001 - Not used 
+ *		0001 - Not used
  *
  *	Original Pi boards:
  *		0002 - Model B,  Rev 1,   256MB, Egoman
@@ -980,7 +980,7 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *warranty)
 
   for (c = &line [strlen (line) - 1] ; (*c == '\n') || (*c == '\r') ; --c)
     *c = 0 ;
-  
+
   if (wiringPiDebug)
     printf ("piBoardId: Revision string: %s\n", line) ;
 
@@ -1019,7 +1019,7 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *warranty)
     bMfg      = (revision & (0x0F << 16)) >> 16 ;
     bMem      = (revision & (0x07 << 20)) >> 20 ;
     bWarranty = (revision & (0x03 << 24)) != 0 ;
-    
+
     *model    = bType ;
     *rev      = bRev ;
     *mem      = bMem ;
@@ -1046,7 +1046,7 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *warranty)
 // If longer than 4, we'll assume it's been overvolted
 
     *warranty = strlen (c) > 4 ;
-  
+
 // Extract last 4 characters:
 
     c = c + strlen (c) - 4 ;
@@ -1086,7 +1086,7 @@ void piBoardId (int *model, int *rev, int *mem, int *maker, int *warranty)
     else                              { *model = 0           ; *rev = 0              ; *mem =   0 ; *maker = 0 ;               }
   }
 }
- 
+
 
 
 /*
@@ -1306,7 +1306,7 @@ void gpioClockSet (int pin, int freq)
     pin = physToGpio [pin] ;
   else if (wiringPiMode != WPI_MODE_GPIO)
     return ;
-  
+
   divi = 19200000 / freq ;
   divr = 19200000 % freq ;
   divf = (int)((double)divr * 4096.0 / 19200000.0) ;
@@ -1563,7 +1563,7 @@ void pullUpDnControl (int pin, int pud)
 
     *(gpio + GPPUD)              = pud & 3 ;		delayMicroseconds (5) ;
     *(gpio + gpioToPUDCLK [pin]) = 1 << (pin & 31) ;	delayMicroseconds (5) ;
-    
+
     *(gpio + GPPUD)              = 0 ;			delayMicroseconds (5) ;
     *(gpio + gpioToPUDCLK [pin]) = 0 ;			delayMicroseconds (5) ;
   }
@@ -1600,7 +1600,9 @@ int digitalRead (int pin)
 	return LOW ;
 
       lseek  (sysFds [pin], 0L, SEEK_SET) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
       read   (sysFds [pin], &c, 1) ;
+#pragma GCC diagnostic pop
       return (c == '0') ? LOW : HIGH ;
     }
     else if (wiringPiMode == WPI_MODE_PINS)
@@ -1667,10 +1669,12 @@ void digitalWrite (int pin, int value)
     {
       if (sysFds [pin] != -1)
       {
+#pragma GCC diagnostic ignored "-Wunused-result"
 	if (value == LOW)
 	  write (sysFds [pin], "0\n", 2) ;
 	else
 	  write (sysFds [pin], "1\n", 2) ;
+#pragma GCC diagnostic pop
       }
       return ;
     }
@@ -1751,7 +1755,7 @@ void pwmWrite (int pin, int value)
 
 /*
  * analogRead:
- *	Read the analog value of a given Pin. 
+ *	Read the analog value of a given Pin.
  *	There is no on-board Pi analog hardware,
  *	so this needs to go to a new node.
  *********************************************************************************
@@ -1770,7 +1774,7 @@ int analogRead (int pin)
 
 /*
  * analogWrite:
- *	Write the analog value to the given Pin. 
+ *	Write the analog value to the given Pin.
  *	There is no on-board Pi analog hardware,
  *	so this needs to go to a new node.
  *********************************************************************************
@@ -1817,7 +1821,7 @@ void pwmToneWrite (int pin, int freq)
  *	Write an 8-bit byte to the first 8 GPIO pins - try to do it as
  *	fast as possible.
  *	However it still needs 2 operations to set the bits, so any external
- *	hardware must not rely on seeing a change as there will be a change 
+ *	hardware must not rely on seeing a change as there will be a change
  *	to set the outputs bits to zero, then another change to set the 1's
  *	Reading is just bit fiddling.
  *	These are wiringPi pin numbers 0..7, or BCM_GPIO pin numbers
@@ -1873,7 +1877,7 @@ unsigned int digitalReadByte (void)
       data = (data << 1) | x ;
     }
   }
-  else 
+  else
   {
     raw = *(gpio + gpioToGPLEV [0]) ; // First bank for these pins
     for (pin = 0 ; pin < 8 ; ++pin)
@@ -1930,7 +1934,7 @@ unsigned int digitalReadByte2 (void)
       data = (data << 1) | x ;
     }
   }
-  else 
+  else
     data = ((*(gpio + gpioToGPLEV [0])) >> 20) & 0xFF ; // First bank for these pins
 
   return data ;
@@ -1976,7 +1980,9 @@ int waitForInterrupt (int pin, int mS)
   if (x > 0)
   {
     lseek (fd, 0, SEEK_SET) ;	// Rewind
-    (void)read (fd, &c, 1) ;	// Read & clear
+#pragma GCC diagnostic ignored "-Wunused-result"
+    read (fd, &c, 1) ;	// Read & clear
+#pragma GCC diagnostic pop
   }
 
   return x ;
@@ -2096,8 +2102,10 @@ int wiringPiISR (int pin, int mode, void (*function)(void))
 // Clear any initial pending interrupt
 
   ioctl (sysFds [bcmGpioPin], FIONREAD, &count) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
   for (i = 0 ; i < count ; ++i)
     read (sysFds [bcmGpioPin], &c, 1) ;
+#pragma GCC diagnostic pop
 
   isrFunctions [pin] = function ;
 
@@ -2359,7 +2367,7 @@ int wiringPiSetup (void)
 
 // Open the master /dev/ memory control device
 // Device strategy: December 2016:
-//	Try /dev/mem. If that fails, then 
+//	Try /dev/mem. If that fails, then
 //	try /dev/gpiomem. If that fails then game over.
 
   if ((fd = open ("/dev/mem", O_RDWR | O_SYNC | O_CLOEXEC) ) < 0)
@@ -2390,13 +2398,13 @@ int wiringPiSetup (void)
   pwm = (uint32_t *)mmap(0, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_PWM) ;
   if (pwm == MAP_FAILED)
     return wiringPiFailure (WPI_ALMOST, "wiringPiSetup: mmap (PWM) failed: %s\n", strerror (errno)) ;
- 
+
 //	Clock control (needed for PWM)
 
   clk = (uint32_t *)mmap(0, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_CLOCK_BASE) ;
   if (clk == MAP_FAILED)
     return wiringPiFailure (WPI_ALMOST, "wiringPiSetup: mmap (CLOCK) failed: %s\n", strerror (errno)) ;
- 
+
 //	The drive pads
 
   pads = (uint32_t *)mmap(0, BLOCK_SIZE, PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_PADS) ;
@@ -2516,7 +2524,7 @@ int wiringPiSetupSys (void)
 
 // Open and scan the directory, looking for exported GPIOs, and pre-open
 //	the 'value' interface to speed things up for later
-  
+
   for (pin = 0 ; pin < 64 ; ++pin)
   {
     sprintf (fName, "/sys/class/gpio/gpio%d/value", pin) ;

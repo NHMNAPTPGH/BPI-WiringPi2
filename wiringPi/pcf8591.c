@@ -41,7 +41,9 @@ static void myAnalogWrite (struct wiringPiNodeStruct *node, UNU int pin, int val
   unsigned char b [2] ;
   b [0] = 0x40 ;
   b [1] = value & 0xFF ;
+#pragma GCC diagnostic ignored "-Wunused-result"
   write (node->fd, b, 2) ;
+#pragma GCC diagnostic pop
 }
 
 

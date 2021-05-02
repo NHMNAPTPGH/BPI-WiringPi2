@@ -47,7 +47,9 @@ void waitForConversion (int fd, unsigned char *buffer, int n)
 {
   for (;;)
   {
+#pragma GCC diagnostic ignored "-Wunused-result"
     read (fd, buffer, n) ;
+#pragma GCC diagnostic pop
     if ((buffer [n-1] & 0x80) == 0)
       break ;
     delay (1) ;
@@ -70,7 +72,7 @@ int myAnalogRead (struct wiringPiNodeStruct *node, int chan)
 // One-shot mode, trigger plus the other configs.
 
   config = 0x80 | (realChan << 5) | (node->data0 << 2) | (node->data1) ;
-  
+
   wiringPiI2CWrite (node->fd, config) ;
 
   switch (node->data0)	// Sample rate

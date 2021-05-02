@@ -282,13 +282,17 @@ static void doLoad (int argc, char *argv [])
   if (!moduleLoaded (module1))
   {
     sprintf (cmd, "%s %s%s", findExecutable (MODPROBE), module1, args1) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
     system (cmd) ;
+#pragma GCC diagnostic pop
   }
 
   if (!moduleLoaded (module2))
   {
     sprintf (cmd, "%s %s%s", findExecutable (MODPROBE), module2, args2) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
     system (cmd) ;
+#pragma GCC diagnostic pop
   }
 
   if (!moduleLoaded (module2))
@@ -342,13 +346,17 @@ static void doUnLoad (int argc, char *argv [])
   if (moduleLoaded (module1))
   {
     sprintf (cmd, "%s %s", findExecutable (RMMOD), module1) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
     system (cmd) ;
+#pragma GCC diagnostic pop
   }
 
   if (moduleLoaded (module2))
   {
     sprintf (cmd, "%s %s", findExecutable (RMMOD), module2) ;
+#pragma GCC diagnostic ignored "-Wunused-result"
     system (cmd) ;
+#pragma GCC diagnostic pop
   }
 }
 
@@ -1290,7 +1298,9 @@ static void doVersion (char *argv [])
   {
     if ((fd = fopen ("/proc/device-tree/model", "r")) != NULL)
     {
+#pragma GCC diagnostic ignored "-Wunused-result"
       fgets (name, 80, fd) ;
+#pragma GCC diagnostic pop
       fclose (fd) ;
       printf ("  *--> %s\n", name) ;
     }
